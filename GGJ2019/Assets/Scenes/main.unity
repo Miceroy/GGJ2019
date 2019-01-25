@@ -259,6 +259,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dbab21d136d135147a81ce33a1b49b7a, type: 2}
+    - target: {fileID: 546151258342264992, guid: a832a33d17cf4f241be17c84b25792ea,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbab21d136d135147a81ce33a1b49b7a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a832a33d17cf4f241be17c84b25792ea, type: 3}
 --- !u!1 &327025529
@@ -570,7 +575,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5645,6 +5650,11 @@ PrefabInstance:
       propertyPath: m_StationaryTurnSpeed
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 7082317142362309825, guid: 1c67f54e1e7c3bf48b8b304bd430b5bd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbab21d136d135147a81ce33a1b49b7a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c67f54e1e7c3bf48b8b304bd430b5bd, type: 3}
 --- !u!1 &1411170150
