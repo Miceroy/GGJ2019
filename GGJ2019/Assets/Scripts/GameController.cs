@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     // Public properties for designer
+    public bool m_isDay;
 
     // Private
-    bool m_isDay;
 
     // Use this for initialization
     void Start () {
