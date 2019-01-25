@@ -15,4 +15,23 @@ public class PlayerGameController : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Piece") {
+            Debug.Log("Collide enter to piece");
+            highlight(true, other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Piece")
+        {
+            Debug.Log("Collide leave to piece");
+            highlight(false, other.gameObject);
+        }
+    }
+
+    private void highlight(bool isOn, GameObject go) {
+    }
 }
