@@ -11,9 +11,4 @@ public class GameBase : MonoBehaviour {
         }
         return controller;
     }
-	
-	// Update is called once per frame
-	/*void Update () {
-		
-	}*/
 }

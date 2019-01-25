@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieceObject : MonoBehaviour {
+public class PieceObject : GameBase {
+    public GameObject dayMesh;
+    public GameObject inAreaMesh;
+    public GameObject outAreaMesh;
 
-	// Use this for initialization
-	void Start () {
+    bool isInArea;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
