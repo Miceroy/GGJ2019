@@ -23,7 +23,7 @@ public class SnapMover : GameBase {
 	}
 
     public void move(Vector2 delta) {
-        if (!rb.useGravity) {
+        if (gameController().isDay()) {
             delta *= moveSpeed * Time.deltaTime;
             realPos.x += delta.x;
             realPos.z += delta.y;
@@ -38,7 +38,7 @@ public class SnapMover : GameBase {
                 (float)rz / snapFactor);
         }
         else {
-            // Do nothing, because physics will do the stuff
+            // Do nothing at night, because physics will do the stuff
         }
     }
 }

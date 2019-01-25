@@ -5,12 +5,10 @@ using UnityEngine;
 public class GameBase : MonoBehaviour {
     GameController controller;
 
-	// Use this for initialization
-	void Start () {
-        controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();	
-	}
-
     public GameController gameController() {
+        if(!controller) {
+            controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        }
         return controller;
     }
 	
