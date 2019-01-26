@@ -23,7 +23,7 @@ public class PlayerCharacterController : GameBase
         {
             if (picked)
             {
-                //TODO: Release
+                // Release
                 Debug.Log("Player release");
                 picked = false;
                 collidingItem.transform.SetParent(collidingOldParent);
@@ -44,7 +44,6 @@ public class PlayerCharacterController : GameBase
         if (other.gameObject.tag == "Piece")
         {
             Debug.Log("Player Collide enter to piece");
-            //  highlight(true, other.gameObject);
             collidingItem = other.gameObject;
         }
     }
@@ -54,28 +53,7 @@ public class PlayerCharacterController : GameBase
         if (!picked && other.gameObject.tag == "Piece")
         {
             Debug.Log("Player Collide leave to piece");
-            //  highlight(false, other.gameObject);
-           // if (!picked)
-           // {
-            //    Debug.Log("Player collidingItem==null");
-                collidingItem = null;
-        //    }
+            collidingItem = null;
         }
     }
-
-   /* private void highlight(bool isOn, GameObject go)
-    {
-        if (isOn)
-        {
-            collidingItem = go;
-        }
-        else
-        {
-            if (!picked)
-            {
-                Debug.Log("Player collidingItem==null");
-                collidingItem = null;
-            }
-        }
-    }*/
 }
