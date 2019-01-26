@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
             AudioComponent _component = transform.GetChild(i).GetComponent<AudioComponent>();
             if (_component != null)
             {
-                if (_component.AudioID != AudioIDEnum.None)
+                //if (_component.AudioID != AudioIDEnum.None)
             }
         }
     }
