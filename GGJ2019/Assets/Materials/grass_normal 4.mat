@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: grass_normal
-  m_Shader: {fileID: 4800000, guid: ead8ae7f7e0954b46aa5423819f7fe8f, type: 3}
+  m_Name: grass_normal 4
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,19 +19,15 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_324C25D6:
-        m_Texture: {fileID: 2800000, guid: d5d9db362a28b524e9ce5bc4cc9f2a52, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_AF341B5:
-        m_Texture: {fileID: 2800000, guid: 13a530d692ad39c488359de100140309, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_B8509539:
-        m_Texture: {fileID: 2800000, guid: 5fa6438bba4bb3a4082c1c56696e8d5d, type: 3}
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpSpecMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -67,18 +63,21 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShadowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TranslucencyMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Boolean_4E61E6A7: 0
-    - Vector1_77191BFB: 0
-    - Vector1_8FBDE061: 0.5
-    - Vector1_9DD357F0: 0.3
-    - Vector1_CD9E5110: 0
-    - Vector1_D26260F: 0
-    - Vector1_F61CCD02: 0
+    - PixelSnap: 0
     - _BumpScale: 1
-    - _Cutoff: 0.5
+    - _Cutoff: 0.3
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EnableExternalAlpha: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -86,19 +85,20 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ShadowOffsetScale: 1
+    - _ShadowStrength: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SquashAmount: 1
     - _SrcBlend: 1
+    - _TranslucencyViewDependency: 0.7
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_45E8E0B9: {r: 0.02959237, g: 0.3301887, b: 0.05339452, a: 1}
-    - Color_86AEF761: {r: 0, g: 0, b: 0, a: 0}
-    - Color_B939C69E: {r: 2.007843, g: 0.7529412, b: 0.0627451, a: 0}
-    - Vector2_2D8220F: {r: 1, g: 3, b: 0, a: 0}
-    - Vector2_7CF528F0: {r: 1, g: 1, b: 0, a: 0}
-    - Vector2_892830D1: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_9E6ADA1D: {r: 1, g: 1, b: 0, a: 0}
-    - Vector2_CB434FAE: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TranslucencyColor: {r: 0.73, g: 0.85, b: 0.41, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}

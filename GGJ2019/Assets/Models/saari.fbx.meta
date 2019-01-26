@@ -1,14 +1,47 @@
 fileFormatVersion: 2
-guid: 413b3cc5b2a6c2241a1fdf47a0e748bc
+guid: aa6865eb428a1134d90192a79b0d22e5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: Base
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cylinder
+    100000: Camera
+    100002: Cone
+    100004: Cylinder
+    100006: Cylinder.001
+    100008: Cylinder.002
+    100010: Cylinder.003
+    100012: Light
+    100014: //RootNode
+    100016: Torus.001
+    400000: Camera
+    400002: Cone
+    400004: Cylinder
+    400006: Cylinder.001
+    400008: Cylinder.002
+    400010: Cylinder.003
+    400012: Light
+    400014: //RootNode
+    400016: Torus.001
+    2000000: Camera
+    2100000: No Name
+    2300000: Cone
+    2300002: Cylinder
+    2300004: Cylinder.001
+    2300006: Cylinder.002
+    2300008: Cylinder.003
+    2300010: Torus.001
+    3300000: Cone
+    3300002: Cylinder
+    3300004: Cylinder.001
+    3300006: Cylinder.002
+    3300008: Cylinder.003
+    3300010: Torus.001
+    4300000: Cone
+    4300002: Cylinder
+    4300004: Cylinder.001
+    4300006: Cylinder.002
+    4300008: Cylinder.003
+    4300010: Torus.001
+    10800000: Light
   externalObjects: {}
   materials:
     importMaterials: 1
