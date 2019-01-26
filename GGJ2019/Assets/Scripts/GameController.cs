@@ -4,28 +4,94 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Public properties for designer
-    public bool m_isDay;
+    [SerializeField]
+    private bool m_isDay = true;
+    public static bool IsDay
+    {
+        get
+        {
+            if (m_instance == null)
+                return true;
 
-    // Private
+            return m_instance.m_isDay;
+        }
+    }
 
-    // Use this for initialization
-    void Start () {
+    private static GameController m_instance = null;
+
+    private List<GameBase> m_dayNightObjects = null;
+    private Dictionary<string, GameBase> m_dayNightObjectsByID = null;
+
+    private void Awake()
+    {
+        m_instance = this;
+        m_dayNightObjects = new List<GameBase>();
+        m_dayNightObjectsByID = new Dictionary<string, GameBase>();
+    }
+
+    private void Start()
+    {
         m_isDay = true;
     }
-	
-	// Update is called once per frame
-	/*void Update () {
-		
-	}*/
 
-    public bool isDay() {
-        return m_isDay;
+    // Debug purposes
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Button_ToggleDayNightCycle();
+        }
     }
 
-    public void toggleDayNight()
+    public static void AddGameBaseObject(GameBase gameBase)
+    {
+        if (m_instance == null)
+            return;
+
+        if (m_instance.m_dayNightObjectsByID.ContainsKey(gameBase.ID))
+            return;
+
+        m_instance.m_dayNightObjectsByID.Add(gameBase.ID, gameBase);
+        m_instance.m_dayNightObjects.Add(gameBase);
+    }
+
+    public static void RemoveGameBaseObject(GameBase gameBase)
+    {
+        if (m_instance == null)
+            return;
+
+        if (!m_instance.m_dayNightObjectsByID.ContainsKey(gameBase.ID))
+            return;
+
+        m_instance.m_dayNightObjectsByID.Remove(gameBase.ID);
+        for (int i = 0; i < m_instance.m_dayNightObjects.Count; i++)
+        {
+            if (m_instance.m_dayNightObjects[i].ID == gameBase.ID)
+            {
+                m_instance.m_dayNightObjects.RemoveAt(i);
+                break;
+            }
+        } 
+    }
+
+    public static void ToggleDayNightCycle()
+    {
+        if (m_instance == null)
+            return;
+
+        m_instance.Button_ToggleDayNightCycle();
+    }
+
+    public void Button_ToggleDayNightCycle()
     {
         m_isDay = !m_isDay;
-    }
 
+        for (int i = 0; i < m_dayNightObjects.Count; i++)
+        {
+            if (m_isDay)
+                m_dayNightObjects[i].SwitchToDay();
+            else
+                m_dayNightObjects[i].SwitchToNight();
+        }
+    }
 }
