@@ -5,6 +5,9 @@ using UnityEngine;
 public class PieceObject : GameBase
 {
     [SerializeField]
+    private GameObject goToShowOnPlayerTrigger;
+
+    [SerializeField]
     private MeshRenderer DayObject;
 
     [SerializeField]
@@ -59,6 +62,11 @@ public class PieceObject : GameBase
         DayObject.material.SetFloat(m_dissolveAmount, 0f);
         NightObjectIn.material.SetFloat(m_dissolveAmount, 1f);
         NightObjectOut.material.SetFloat(m_dissolveAmount, 1f);
+
+        if (goToShowOnPlayerTrigger)
+        {
+            goToShowOnPlayerTrigger.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,6 +82,11 @@ public class PieceObject : GameBase
                 transitionToNightIn();
             }
         }
+
+        if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
+        {
+            goToShowOnPlayerTrigger.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -88,6 +101,11 @@ public class PieceObject : GameBase
             {
                 transitionToNightOut();
             }
+        }
+
+        if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
+        {
+            goToShowOnPlayerTrigger.SetActive(false);
         }
     }
 
@@ -197,8 +215,9 @@ public class PieceObject : GameBase
 
     //private void OnTriggerEnter(Collider other)
     //{
-    //    if (other.gameObject.tag == "Area")
+    //    if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
     //    {
+    //        goToShowOnPlayerTrigger.SetActive(true);
     //        Debug.Log("Piece enter to area");
     //        isInArea = true;
     //        checkSwitchMesh();
@@ -207,11 +226,12 @@ public class PieceObject : GameBase
     //
     //private void OnTriggerExit(Collider other)
     //{
-    //    if (other.gameObject.tag == "Area")
+    //    if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
     //    {
-    //        Debug.Log("Piece enter to area");
-    //        isInArea = false;
-    //        checkSwitchMesh();
+    //        goToShowOnPlayerTrigger.active = true;
+            //        Debug.Log("Piece enter to area");
+            //        isInArea = false;
+            //        checkSwitchMesh();
     //    }
     //}
     //
