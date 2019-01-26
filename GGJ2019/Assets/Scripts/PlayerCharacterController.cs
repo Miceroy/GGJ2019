@@ -8,6 +8,7 @@ public class PlayerCharacterController : GameBase
 
     GameObject collidingItem;
     Transform collidingOldParent;
+    float oldY;
     bool picked;
 
     // Start is called before the first frame update
@@ -27,6 +28,10 @@ public class PlayerCharacterController : GameBase
                 Debug.Log("Player release");
                 picked = false;
                 collidingItem.transform.SetParent(collidingOldParent);
+                collidingItem.transform.position.Set(
+                    collidingItem.transform.position.x, 
+                    oldY, 
+                    collidingItem.transform.position.z);
             }
             else
             {
@@ -34,7 +39,8 @@ public class PlayerCharacterController : GameBase
                 Debug.Log("Player grab");
                 picked = true;
                 collidingOldParent = collidingItem.transform.parent;
-                collidingItem.transform.SetParent(objectPickPoint.transform);                
+                collidingItem.transform.SetParent(objectPickPoint.transform);
+                oldY = objectPickPoint.transform.position.y;
             }
         }
     }
