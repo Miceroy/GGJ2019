@@ -14,7 +14,7 @@ public class GameControlManager
     }
 
     private List<GameBase> m_dayNightObjects = null;
-    private Dictionary<string, GameBase> m_dayNightObjectsByID = null;
+    private Dictionary<GameBaseIDEnum, GameBase> m_dayNightObjectsByID = null;
 
     public GameControlManager()
     {
@@ -24,7 +24,7 @@ public class GameControlManager
     private void initialize()
     {
         m_dayNightObjects = new List<GameBase>();
-        m_dayNightObjectsByID = new Dictionary<string, GameBase>();
+        m_dayNightObjectsByID = new Dictionary<GameBaseIDEnum, GameBase>();
         m_isDay = true;
     }
 

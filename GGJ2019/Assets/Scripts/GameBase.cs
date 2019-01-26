@@ -5,8 +5,16 @@ using UnityEngine;
 public class GameBase : MonoBehaviour
 {
     [SerializeField]
-    protected string m_id = string.Empty;
-    public string ID { get { return m_id; } }
+    protected GameBaseIDEnum m_id = GameBaseIDEnum.None;
+    public GameBaseIDEnum ID { get { return m_id; } }
+
+    [SerializeField]
+    protected GameBaseExtraFunctionality m_functionality = GameBaseExtraFunctionality.None;
+    public GameBaseExtraFunctionality Functionality { get { return m_functionality; } }
+
+    //[SerializeField]
+    //protected string m_id = string.Empty;
+    //public string ID { get { return m_id; } }
 
     [SerializeField]
     protected Material m_hologramBaseMaterial = null;
@@ -14,7 +22,8 @@ public class GameBase : MonoBehaviour
     [SerializeField]
     protected Material m_dissolveBaseMaterial = null;
 
-    protected string m_dissolveAmount = "Vector1_EFB0DCB7";
+    protected readonly string m_dissolveAmount = "Vector1_8FBDE061";
+    protected readonly string m_hologramToggle = "Boolean_4E61E6A7";
 
     private void OnEnable()
     {

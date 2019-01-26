@@ -44,6 +44,9 @@ public class PieceObject : GameBase
     private bool m_targetIsNight = false;
     private float m_scaleTransitionTimer = 0f;
 
+    private GameBase m_objectBelow = null;
+    private GameBase m_objectAbove = null;
+
     private void Start()
     {
         m_hologram = new Material(m_hologramBaseMaterial);
@@ -74,6 +77,12 @@ public class PieceObject : GameBase
                 transitionToNightIn();
             }
         }
+
+        PieceObject _piece = other.gameObject.GetComponent<PieceObject>();
+        if (_piece != null && _piece.m_functionality == GameBaseExtraFunctionality.Hologram)
+        {
+            // TODO: Move this holographic logic when object is actually placed on top of this kind object.
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -88,6 +97,12 @@ public class PieceObject : GameBase
             {
                 transitionToNightOut();
             }
+        }
+
+        PieceObject _piece = other.gameObject.GetComponent<PieceObject>();
+        if (_piece != null && _piece.m_functionality == GameBaseExtraFunctionality.Hologram)
+        {
+            // TODO: Same as trigger enter.
         }
     }
 
@@ -176,70 +191,13 @@ public class PieceObject : GameBase
         m_inTransition = true;
     }
 
-    //bool isInArea;
-    //bool isPrevDay;
+    private void setHolographicOn()
+    {
 
-    // Use this for initialization
-    //void Start ()
-    //{
-    //    checkSwitchMesh();
-    //}
+    }
 
-    // Update is called once per frame
-    //void Update () {
-    //    bool isNowDay = gameController().isDay();
-    //    if (isPrevDay != isNowDay)
-    //    {
-    //        checkSwitchMesh();
-    //    }
-    //    isPrevDay = isNowDay;
-    //}
+    private void setHolographicOff()
+    {
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Area")
-    //    {
-    //        Debug.Log("Piece enter to area");
-    //        isInArea = true;
-    //        checkSwitchMesh();
-    //    }
-    //}
-    //
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Area")
-    //    {
-    //        Debug.Log("Piece enter to area");
-    //        isInArea = false;
-    //        checkSwitchMesh();
-    //    }
-    //}
-    //
-    //private void checkSwitchMesh()
-    //{
-    //    if( gameController().isDay() )
-    //    {
-    //        Debug.Log("Switch day mesh");
-    //        dayMesh.SetActive(true);
-    //        inAreaMesh.SetActive(false);
-    //        outAreaMesh.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        if(isInArea)
-    //        {
-    //            Debug.Log("Switch nught in area mesh");
-    //            dayMesh.SetActive(false);
-    //            inAreaMesh.SetActive(true);
-    //            outAreaMesh.SetActive(false);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("Switch nught out area mesh");
-    //            dayMesh.SetActive(false);
-    //            inAreaMesh.SetActive(false);
-    //            outAreaMesh.SetActive(true);
-    //        }
-    //    }
-    //}
+    }
 }
