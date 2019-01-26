@@ -643,7 +643,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1166741958
 Transform:
@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100d5e0960ae0fa4e9cc85cc07a80c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 
+  m_id: StaticScene
   m_hologramBaseMaterial: {fileID: 0}
   m_dissolveBaseMaterial: {fileID: 0}
   m_scaleTransitionSpeed: 1
@@ -1710,7 +1710,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1983047731
 Transform:
@@ -1828,6 +1828,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area
       objectReference: {fileID: 0}
+    - target: {fileID: 964728482904548648, guid: 97439f2826aba4e42932846e8b64801e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6660586128345713858, guid: 97439f2826aba4e42932846e8b64801e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1902,6 +1907,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474382500015805060, guid: 97439f2826aba4e42932846e8b64801e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474382499517814371, guid: 97439f2826aba4e42932846e8b64801e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97439f2826aba4e42932846e8b64801e, type: 3}
