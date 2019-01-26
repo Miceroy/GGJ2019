@@ -43,7 +43,7 @@ public class PlayerCharacterController : GameBase
     {
         if (other.gameObject.tag == "Piece")
         {
-            Debug.Log("Collide enter to piece");
+            Debug.Log("Player Collide enter to piece");
             //  highlight(true, other.gameObject);
             collidingItem = other.gameObject;
         }
@@ -53,7 +53,7 @@ public class PlayerCharacterController : GameBase
     {
         if (!picked && other.gameObject.tag == "Piece")
         {
-            Debug.Log("Collide leave to piece");
+            Debug.Log("Player Collide leave to piece");
             //  highlight(false, other.gameObject);
            // if (!picked)
            // {
