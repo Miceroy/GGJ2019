@@ -75,12 +75,19 @@ public class PieceObject : GameBase
         AreaObject _area = other.gameObject.GetComponent<AreaObject>();
         if (_area != null)
         {
-            // In area
-            m_inPlaygroundArea = true;
-
-            if (!GameController.IsDay)
+            if (_area.ID == GameBaseIDEnum.InnerArea)
             {
-                transitionToNightIn();
+                // In area
+                m_inPlaygroundArea = true;
+
+                if (!GameController.IsDay)
+                {
+                    transitionToNightIn();
+                }
+            }
+            else if (!m_inPlaygroundArea && _area.ID == GameBaseIDEnum.OuterArea)
+            {
+                // TODO
             }
         }
     }
@@ -90,12 +97,19 @@ public class PieceObject : GameBase
         AreaObject _area = other.gameObject.GetComponent<AreaObject>();
         if (_area != null)
         {
-            // Out of area
-            m_inPlaygroundArea = false;
-
-            if (!GameController.IsDay)
+            if (_area.ID == GameBaseIDEnum.InnerArea)
             {
-                transitionToNightOut();
+                // Out of area
+                m_inPlaygroundArea = false;
+
+                if (!GameController.IsDay)
+                {
+                    transitionToNightOut();
+                }
+            }
+            else if(!m_inPlaygroundArea && _area.ID == GameBaseIDEnum.OuterArea)
+            {
+                // TODO
             }
         }
     }
