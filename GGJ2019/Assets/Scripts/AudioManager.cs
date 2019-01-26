@@ -72,7 +72,10 @@ public class AudioManager : MonoBehaviour
             {
                 if (m_instance.m_currentlyPlayingAudioDictionary.ContainsKey(audioToPlay))
                 {
-                    Debug.LogWarning("Trying to play already playing audio!");
+                    if (_audioComponent.AudioSource.isPlaying)
+                        Debug.LogWarning("Trying to play already playing audio!");
+                    else
+                        _audioComponent.AudioSource.UnPause();
                 }
                 else
                 {
