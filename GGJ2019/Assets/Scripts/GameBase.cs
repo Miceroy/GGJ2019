@@ -20,6 +20,7 @@ public class GameBase : MonoBehaviour
     //protected string m_id = string.Empty;
     //public string ID { get { return m_id; } }
 
+    [Tooltip("For Debug purposes.")]
     [SerializeField]
     protected Material m_materialPrefab = null;
 

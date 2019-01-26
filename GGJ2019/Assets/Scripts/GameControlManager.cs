@@ -14,7 +14,7 @@ public class GameControlManager
     }
 
     private List<GameBase> m_dayNightObjects = null;
-    private Dictionary<GameBaseIDEnum, GameBase> m_dayNightObjectsByID = null;
+    //private Dictionary<GameBaseIDEnum, GameBase> m_dayNightObjectsByID = null;
 
     public GameControlManager()
     {
@@ -24,33 +24,38 @@ public class GameControlManager
     private void initialize()
     {
         m_dayNightObjects = new List<GameBase>();
-        m_dayNightObjectsByID = new Dictionary<GameBaseIDEnum, GameBase>();
+        //m_dayNightObjectsByID = new Dictionary<GameBaseIDEnum, GameBase>();
         m_isDay = true;
     }
 
     public void AddGameBaseObject(GameBase gameBase)
     {
-        if (m_dayNightObjectsByID.ContainsKey(gameBase.ID))
+        //if (m_dayNightObjectsByID.ContainsKey(gameBase.ID))
+        //    return;
+
+        if (m_dayNightObjects.Contains(gameBase))
             return;
 
-        m_dayNightObjectsByID.Add(gameBase.ID, gameBase);
+        //m_dayNightObjectsByID.Add(gameBase.ID, gameBase);
         m_dayNightObjects.Add(gameBase);
     }
 
     public void RemoveGameBaseObject(GameBase gameBase)
     {
-        if (!m_dayNightObjectsByID.ContainsKey(gameBase.ID))
-            return;
+        //if (!m_dayNightObjectsByID.ContainsKey(gameBase.ID))
+        //    return;
 
-        m_dayNightObjectsByID.Remove(gameBase.ID);
-        for (int i = 0; i < m_dayNightObjects.Count; i++)
-        {
-            if (m_dayNightObjects[i].ID == gameBase.ID)
-            {
-                m_dayNightObjects.RemoveAt(i);
-                break;
-            }
-        }
+        //m_dayNightObjectsByID.Remove(gameBase.ID);
+        //for (int i = 0; i < m_dayNightObjects.Count; i++)
+        //{
+        //    if (m_dayNightObjects[i].ID == gameBase.ID)
+        //    {
+        //        m_dayNightObjects.RemoveAt(i);
+        //        break;
+        //    }
+        //}
+
+        m_dayNightObjects.Remove(gameBase);
     }
 
     public void ToggleDayNightCycle()

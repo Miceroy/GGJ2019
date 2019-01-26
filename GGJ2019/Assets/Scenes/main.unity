@@ -1111,16 +1111,6 @@ PrefabInstance:
       propertyPath: m_nightScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8241378314180021769, guid: 266b26d99569e3e4e8d8f350005f1454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.0000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8241378314180021769, guid: 266b26d99569e3e4e8d8f350005f1454,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 266b26d99569e3e4e8d8f350005f1454, type: 3}
 --- !u!4 &1319217512 stripped
