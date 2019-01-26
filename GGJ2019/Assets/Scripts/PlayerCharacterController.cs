@@ -8,6 +8,7 @@ public class PlayerCharacterController : GameBase
 
     GameObject collidingItem;
     Transform collidingOldParent;
+    float oldY;
     bool picked;
 
     // Start is called before the first frame update
@@ -23,10 +24,14 @@ public class PlayerCharacterController : GameBase
         {
             if (picked)
             {
-                //TODO: Release
+                // Release
                 Debug.Log("Player release");
                 picked = false;
                 collidingItem.transform.SetParent(collidingOldParent);
+                collidingItem.transform.position.Set(
+                    collidingItem.transform.position.x, 
+                    oldY, 
+                    collidingItem.transform.position.z);
             }
             else
             {
@@ -34,7 +39,8 @@ public class PlayerCharacterController : GameBase
                 Debug.Log("Player grab");
                 picked = true;
                 collidingOldParent = collidingItem.transform.parent;
-                collidingItem.transform.SetParent(objectPickPoint.transform);                
+                collidingItem.transform.SetParent(objectPickPoint.transform);
+                oldY = objectPickPoint.transform.position.y;
             }
         }
     }
@@ -43,8 +49,7 @@ public class PlayerCharacterController : GameBase
     {
         if (other.gameObject.tag == "Piece")
         {
-            Debug.Log("Collide enter to piece");
-            //  highlight(true, other.gameObject);
+            Debug.Log("Player Collide enter to piece");
             collidingItem = other.gameObject;
         }
     }
@@ -53,29 +58,8 @@ public class PlayerCharacterController : GameBase
     {
         if (!picked && other.gameObject.tag == "Piece")
         {
-            Debug.Log("Collide leave to piece");
-            //  highlight(false, other.gameObject);
-           // if (!picked)
-           // {
-            //    Debug.Log("Player collidingItem==null");
-                collidingItem = null;
-        //    }
+            Debug.Log("Player Collide leave to piece");
+            collidingItem = null;
         }
     }
-
-   /* private void highlight(bool isOn, GameObject go)
-    {
-        if (isOn)
-        {
-            collidingItem = go;
-        }
-        else
-        {
-            if (!picked)
-            {
-                Debug.Log("Player collidingItem==null");
-                collidingItem = null;
-            }
-        }
-    }*/
 }
