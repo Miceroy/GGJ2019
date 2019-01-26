@@ -33,6 +33,7 @@ Transform:
   - {fileID: 8872852772866551223}
   - {fileID: 7088513427038646628}
   - {fileID: 276153655224420748}
+  - {fileID: 7954048116749451673}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,6 +54,7 @@ MonoBehaviour:
     type: 2}
   m_dissolveBaseMaterial: {fileID: 2100000, guid: beb718f57a913fb41b619bdb1fcccd48,
     type: 2}
+  goToShowOnPlayerTrigger: {fileID: 5983077375601055123}
   DayObject: {fileID: 6025895331294701942}
   NightObjectIn: {fileID: 6543806152041000361}
   NightObjectOut: {fileID: 1351977670716019962}
@@ -180,6 +182,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5983077375601055123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7954048116749451673}
+  m_Layer: 0
+  m_Name: pickIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7954048116749451673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983077375601055123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.503, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4455458092949722609}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6118064380995834093
 GameObject:
   m_ObjectHideFlags: 0

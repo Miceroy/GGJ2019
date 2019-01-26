@@ -5,6 +5,9 @@ using UnityEngine;
 public class PieceObject : GameBase
 {
     [SerializeField]
+    private GameObject goToShowOnPlayerTrigger;
+
+    [SerializeField]
     private MeshRenderer DayObject;
 
     [SerializeField]
@@ -44,9 +47,6 @@ public class PieceObject : GameBase
     private bool m_targetIsNight = false;
     private float m_scaleTransitionTimer = 0f;
 
-    private GameBase m_objectBelow = null;
-    private GameBase m_objectAbove = null;
-
     private void Start()
     {
         m_hologram = new Material(m_hologramBaseMaterial);
@@ -62,6 +62,11 @@ public class PieceObject : GameBase
         DayObject.material.SetFloat(m_dissolveAmount, 0f);
         NightObjectIn.material.SetFloat(m_dissolveAmount, 1f);
         NightObjectOut.material.SetFloat(m_dissolveAmount, 1f);
+
+        if (goToShowOnPlayerTrigger)
+        {
+            goToShowOnPlayerTrigger.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,10 +83,9 @@ public class PieceObject : GameBase
             }
         }
 
-        PieceObject _piece = other.gameObject.GetComponent<PieceObject>();
-        if (_piece != null && _piece.m_functionality == GameBaseExtraFunctionality.Hologram)
+        if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
         {
-            // TODO: Move this holographic logic when object is actually placed on top of this kind object.
+            goToShowOnPlayerTrigger.SetActive(true);
         }
     }
 
@@ -99,10 +103,9 @@ public class PieceObject : GameBase
             }
         }
 
-        PieceObject _piece = other.gameObject.GetComponent<PieceObject>();
-        if (_piece != null && _piece.m_functionality == GameBaseExtraFunctionality.Hologram)
+        if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
         {
-            // TODO: Same as trigger enter.
+            goToShowOnPlayerTrigger.SetActive(false);
         }
     }
 
@@ -149,6 +152,11 @@ public class PieceObject : GameBase
                 m_transitionScale = false;
             }
         }
+
+        if(GetComponent<Rigidbody>().useGravity == false && goToShowOnPlayerTrigger.active)
+        {
+            goToShowOnPlayerTrigger.SetActive(false);
+        }
     }
 
     public override void SwitchToDay()
@@ -191,13 +199,72 @@ public class PieceObject : GameBase
         m_inTransition = true;
     }
 
-    private void setHolographicOn()
-    {
+    //bool isInArea;
+    //bool isPrevDay;
 
-    }
+    // Use this for initialization
+    //void Start ()
+    //{
+    //    checkSwitchMesh();
+    //}
 
-    private void setHolographicOff()
-    {
+    // Update is called once per frame
+    //void Update () {
+    //    bool isNowDay = gameController().isDay();
+    //    if (isPrevDay != isNowDay)
+    //    {
+    //        checkSwitchMesh();
+    //    }
+    //    isPrevDay = isNowDay;
+    //}
 
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
+    //    {
+    //        goToShowOnPlayerTrigger.SetActive(true);
+    //        Debug.Log("Piece enter to area");
+    //        isInArea = true;
+    //        checkSwitchMesh();
+    //    }
+    //}
+    //
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
+    //    {
+    //        goToShowOnPlayerTrigger.active = true;
+            //        Debug.Log("Piece enter to area");
+            //        isInArea = false;
+            //        checkSwitchMesh();
+    //    }
+    //}
+    //
+    //private void checkSwitchMesh()
+    //{
+    //    if( gameController().isDay() )
+    //    {
+    //        Debug.Log("Switch day mesh");
+    //        dayMesh.SetActive(true);
+    //        inAreaMesh.SetActive(false);
+    //        outAreaMesh.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        if(isInArea)
+    //        {
+    //            Debug.Log("Switch nught in area mesh");
+    //            dayMesh.SetActive(false);
+    //            inAreaMesh.SetActive(true);
+    //            outAreaMesh.SetActive(false);
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Switch nught out area mesh");
+    //            dayMesh.SetActive(false);
+    //            inAreaMesh.SetActive(false);
+    //            outAreaMesh.SetActive(true);
+    //        }
+    //    }
+    //}
 }
