@@ -5,11 +5,15 @@ using UnityEngine;
 public class MultipleTargetCamera : MonoBehaviour
 {
     GameObject[] players;
+    Vector3[] avgBuffer;
+    int curIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        avgBuffer = new Vector3[30];
+        curIndex = 0;
     }
 
     // Update is called once per frame
@@ -18,8 +22,18 @@ public class MultipleTargetCamera : MonoBehaviour
         Vector3 center = getCenterPoint();
         transform.LookAt(center);
         center.x = 0;
-        transform.position = center + new Vector3(0, 6, -7);
-        //transform.Ali
+        center += new Vector3(0, 6, -7);
+        avgBuffer[curIndex] = center;
+        curIndex = (curIndex + 1) % avgBuffer.Length;
+
+        center = Vector3.zero;
+        for(int i=0; i< avgBuffer.Length; ++i)
+        {
+            center += avgBuffer[i];
+        }
+
+        center /= avgBuffer.Length;
+        transform.position = center;
     }
 
     Vector3 getCenterPoint()
@@ -35,6 +49,6 @@ public class MultipleTargetCamera : MonoBehaviour
             bounds.Encapsulate(players[i].transform.position);
         }
 
-        return bounds.center;
+        return new Vector3(bounds.center.x, 1, bounds.center.y);
     }
 }
