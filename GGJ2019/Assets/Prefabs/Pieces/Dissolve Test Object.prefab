@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_id: 
+  m_enableOnStart: 0
   m_hologramBaseMaterial: {fileID: 2100000, guid: b1371ed862c5110449ae1a597568de5f,
     type: 2}
   m_dissolveBaseMaterial: {fileID: 2100000, guid: beb718f57a913fb41b619bdb1fcccd48,
@@ -56,6 +57,7 @@ MonoBehaviour:
   DayObject: {fileID: 6025895331294701942}
   NightObjectIn: {fileID: 6543806152041000361}
   NightObjectOut: {fileID: 1351977670716019962}
+  m_transitionSpeed: 1
 --- !u!135 &7339915802517440543
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -80,10 +82,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &3569362200309826386
 GameObject:

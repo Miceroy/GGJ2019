@@ -8,7 +8,7 @@ public class PlayerCharacterController : GameBase
 
     GameObject collidingItem;
     Transform collidingOldParent;
-    float oldY;
+    //float oldY;
     bool picked;
 
     // Start is called before the first frame update
@@ -28,10 +28,12 @@ public class PlayerCharacterController : GameBase
                 Debug.Log("Player release");
                 picked = false;
                 collidingItem.transform.SetParent(collidingOldParent);
-                collidingItem.transform.position.Set(
+                collidingItem.GetComponent<Rigidbody>().useGravity = true;
+                collidingItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                /*collidingItem.transform.position.Set(
                     collidingItem.transform.position.x, 
                     oldY, 
-                    collidingItem.transform.position.z);
+                    collidingItem.transform.position.z);*/
             }
             else
             {
@@ -40,7 +42,13 @@ public class PlayerCharacterController : GameBase
                 picked = true;
                 collidingOldParent = collidingItem.transform.parent;
                 collidingItem.transform.SetParent(objectPickPoint.transform);
-                oldY = objectPickPoint.transform.position.y;
+                collidingItem.GetComponent<Rigidbody>().useGravity = false;
+                collidingItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                //oldY = objectPickPoint.transform.position.y;
+                collidingItem.transform.Translate(
+                    0,
+                    objectPickPoint.transform.localPosition.y,
+                    0);
             }
         }
     }
