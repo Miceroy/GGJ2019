@@ -16,6 +16,15 @@ public class PieceObject : GameBase
     [SerializeField]
     private float m_transitionSpeed = 1f; // How long single transition lasts in seconds (total amount is double of this time)
 
+    [SerializeField]
+    private float m_scaleTransitionSpeed = 1f;
+
+    [SerializeField]
+    private Vector3 m_dayScale = new Vector3(1f, 1f, 1f);
+
+    [SerializeField]
+    private Vector3 m_nightScale = new Vector3(2f, 2f, 2f);
+
     private bool m_inPlaygroundArea = false;
 
     // Runtime instantiated materials.
@@ -30,6 +39,10 @@ public class PieceObject : GameBase
 
     private MeshRenderer m_currentMesh = null;
     private MeshRenderer m_targetMesh = null;
+
+    private bool m_transitionScale = false;
+    private bool m_targetIsNight = false;
+    private float m_scaleTransitionTimer = 0f;
 
     private void Start()
     {
@@ -103,6 +116,24 @@ public class PieceObject : GameBase
                     m_inTransition = false;
             }
         }
+
+        if (m_transitionScale)
+        {
+            m_scaleTransitionTimer += Time.deltaTime;
+            float _transitionValue = m_scaleTransitionTimer / m_scaleTransitionSpeed;
+
+            Vector3 _from = m_targetIsNight ? m_dayScale : m_nightScale;
+            Vector3 _to = m_targetIsNight ? m_nightScale : m_dayScale;
+
+            Vector3 _curScale = Vector3.Lerp(_from, _to, _transitionValue);
+
+            transform.localScale = _curScale;
+
+            if (_transitionValue >= 1f)
+            {
+                m_transitionScale = false;
+            }
+        }
     }
 
     public override void SwitchToDay()
@@ -111,6 +142,10 @@ public class PieceObject : GameBase
         m_transitionTimer = 0f;
         m_firsObjectTransitioned = false;
         m_inTransition = true;
+
+        m_targetIsNight = false;
+        m_scaleTransitionTimer = 0f;
+        m_transitionScale = true;
     }
 
     public override void SwitchToNight()
@@ -119,6 +154,10 @@ public class PieceObject : GameBase
         m_transitionTimer = 0f;
         m_firsObjectTransitioned = false;
         m_inTransition = true;
+
+        m_targetIsNight = true;
+        m_scaleTransitionTimer = 0f;
+        m_transitionScale = true;
     }
 
     private void transitionToNightIn()
