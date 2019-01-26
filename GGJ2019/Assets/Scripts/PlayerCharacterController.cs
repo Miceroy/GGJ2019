@@ -28,6 +28,8 @@ public class PlayerCharacterController : GameBase
                 Debug.Log("Player release");
                 picked = false;
                 collidingItem.transform.SetParent(collidingOldParent);
+                collidingItem.GetComponent<Rigidbody>().useGravity = true;
+                collidingItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 /*collidingItem.transform.position.Set(
                     collidingItem.transform.position.x, 
                     oldY, 
@@ -40,11 +42,13 @@ public class PlayerCharacterController : GameBase
                 picked = true;
                 collidingOldParent = collidingItem.transform.parent;
                 collidingItem.transform.SetParent(objectPickPoint.transform);
+                collidingItem.GetComponent<Rigidbody>().useGravity = false;
+                collidingItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 //oldY = objectPickPoint.transform.position.y;
-               /* collidingItem.transform.position.Set(
+                collidingItem.transform.Translate(
                     0,
                     objectPickPoint.transform.localPosition.y,
-                    0);*/
+                    0);
             }
         }
     }
