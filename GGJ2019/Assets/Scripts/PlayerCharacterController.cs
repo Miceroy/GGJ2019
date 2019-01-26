@@ -37,8 +37,14 @@ public class PlayerCharacterController : GameBase
             }
             else
             {
+                PieceObject _piece = collidingItem.GetComponent<PieceObject>();
+                if (_piece != null && !_piece.IsPickable)
+                    return;
+
+                //if( IsPickable )
                 // Grab
                 Debug.Log("Player grab");
+
                 picked = true;
                 collidingOldParent = collidingItem.transform.parent;
                 collidingItem.transform.SetParent(objectPickPoint.transform);
