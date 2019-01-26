@@ -49,6 +49,7 @@ public class PieceObject : GameBase {
     {
         if( gameController().isDay() )
         {
+            Debug.Log("Switch day mesh");
             dayMesh.SetActive(true);
             inAreaMesh.SetActive(false);
             outAreaMesh.SetActive(false);
@@ -57,12 +58,14 @@ public class PieceObject : GameBase {
         {
             if(isInArea)
             {
+                Debug.Log("Switch nught in area mesh");
                 dayMesh.SetActive(false);
                 inAreaMesh.SetActive(true);
                 outAreaMesh.SetActive(false);
             }
             else
             {
+                Debug.Log("Switch nught out area mesh");
                 dayMesh.SetActive(false);
                 inAreaMesh.SetActive(false);
                 outAreaMesh.SetActive(true);

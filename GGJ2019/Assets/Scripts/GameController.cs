@@ -22,4 +22,10 @@ public class GameController : MonoBehaviour
     public bool isDay() {
         return m_isDay;
     }
+
+    public void toggleDayNight()
+    {
+        m_isDay = !m_isDay;
+    }
+
 }
