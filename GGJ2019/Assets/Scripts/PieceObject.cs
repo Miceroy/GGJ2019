@@ -28,10 +28,7 @@ public class PieceObject : GameBase
     private bool m_firsObjectTransitioned = false;
     private float m_transitionTimer = 0f;
 
-    [SerializeField]
     private MeshRenderer m_currentMesh = null;
-
-    [SerializeField]
     private MeshRenderer m_targetMesh = null;
 
     private void Start()
