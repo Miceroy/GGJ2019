@@ -83,16 +83,6 @@ public class PieceObject : GameBase
                 transitionToNightIn();
             }
         }
-
-        PlayerCharacterController _player = other.gameObject.GetComponent<PlayerCharacterController>();
-        if (_player != null && goToShowOnPlayerTrigger != null && m_isPickable)
-        {
-            goToShowOnPlayerTrigger.SetActive(true);
-
-            DayObject.material.SetInt(m_hologramToggle, 1);
-            NightObjectIn.material.SetInt(m_hologramToggle, 1);
-            NightObjectOut.material.SetInt(m_hologramToggle, 1);
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -108,16 +98,24 @@ public class PieceObject : GameBase
                 transitionToNightOut();
             }
         }
+    }
 
-        PlayerCharacterController _player = other.gameObject.GetComponent<PlayerCharacterController>();
-        if (_player != null && goToShowOnPlayerTrigger != null && m_isPickable)
-        {
-            goToShowOnPlayerTrigger.SetActive(false);
+    public override void SetPlayerNearEffectOn()
+    {
+        goToShowOnPlayerTrigger.SetActive(true);
 
-            DayObject.material.SetInt(m_hologramToggle, 0);
-            NightObjectIn.material.SetInt(m_hologramToggle, 0);
-            NightObjectOut.material.SetInt(m_hologramToggle, 0);
-        }
+        DayObject.material.SetInt(m_hologramToggle, 1);
+        NightObjectIn.material.SetInt(m_hologramToggle, 1);
+        NightObjectOut.material.SetInt(m_hologramToggle, 1);
+    }
+
+    public override void SetPlayerNearEffectOff()
+    {
+        goToShowOnPlayerTrigger.SetActive(false);
+
+        DayObject.material.SetInt(m_hologramToggle, 0);
+        NightObjectIn.material.SetInt(m_hologramToggle, 0);
+        NightObjectOut.material.SetInt(m_hologramToggle, 0);
     }
 
     protected override void Update()

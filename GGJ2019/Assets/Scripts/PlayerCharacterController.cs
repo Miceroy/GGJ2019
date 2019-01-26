@@ -6,30 +6,34 @@ public class PlayerCharacterController : GameBase
 {
     public GameObject objectPickPoint;
 
-    GameObject collidingItem;
+    //GameObject collidingItem;
+
     Transform collidingOldParent;
     //float oldY;
+
     bool picked;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        collidingItem = null;
-    }
+    private GameBase m_baseGameObject = null;
+
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //    m_baseGameObject = null;
+    //}
 
     // Update is called once per frame
     protected override void Update()
     {
-        if (collidingItem && Input.GetButtonUp("Fire1"))
+        if (m_baseGameObject != null && Input.GetButtonUp("Fire1"))
         {
             if (picked)
             {
                 // Release
                 Debug.Log("Player release");
                 picked = false;
-                collidingItem.transform.SetParent(collidingOldParent);
-                collidingItem.GetComponent<Rigidbody>().useGravity = true;
-                collidingItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                m_baseGameObject.transform.SetParent(collidingOldParent);
+                m_baseGameObject.Rigidbody.useGravity = true;
+                m_baseGameObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
                 /*collidingItem.transform.position.Set(
                     collidingItem.transform.position.x, 
                     oldY, 
@@ -37,43 +41,47 @@ public class PlayerCharacterController : GameBase
             }
             else
             {
-                PieceObject _piece = collidingItem.GetComponent<PieceObject>();
-                if (_piece != null && !_piece.IsPickable)
+                if (!m_baseGameObject.IsPickable)
                     return;
 
-                //if( IsPickable )
                 // Grab
                 Debug.Log("Player grab");
 
                 picked = true;
-                collidingOldParent = collidingItem.transform.parent;
-                collidingItem.transform.SetParent(objectPickPoint.transform);
-                collidingItem.GetComponent<Rigidbody>().useGravity = false;
-                collidingItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                collidingOldParent = m_baseGameObject.transform.parent;
+                m_baseGameObject.transform.SetParent(objectPickPoint.transform);
+                m_baseGameObject.Rigidbody.useGravity = false;
+                m_baseGameObject.Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 //oldY = objectPickPoint.transform.position.y;
-                collidingItem.transform.Translate(
-                    0,
-                    objectPickPoint.transform.localPosition.y,
-                    0);
+                m_baseGameObject.transform.localPosition = new Vector3();
+                //collidingItem.transform.Translate(
+                //    0,
+                //    objectPickPoint.transform.localPosition.y,
+                //    0);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Piece")
+        if (picked)
+            return;
+
+        GameBase _baseObject = other.gameObject.GetComponent<GameBase>();
+        if (_baseObject != null)
         {
-            Debug.Log("Player Collide enter to piece");
-            collidingItem = other.gameObject;
+            m_baseGameObject = _baseObject;
+            _baseObject.SetPlayerNearEffectOn();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!picked && other.gameObject.tag == "Piece")
+        GameBase _baseObject = other.gameObject.GetComponent<GameBase>();
+        if (!picked && _baseObject != null && _baseObject == m_baseGameObject)
         {
-            Debug.Log("Player Collide leave to piece");
-            collidingItem = null;
+            m_baseGameObject.SetPlayerNearEffectOff();
+            m_baseGameObject = null;
         }
     }
 }

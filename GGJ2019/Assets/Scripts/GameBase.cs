@@ -24,6 +24,18 @@ public class GameBase : MonoBehaviour
     [SerializeField]
     protected Material m_materialPrefab = null;
 
+    private Rigidbody m_rigidBody = null;
+    public Rigidbody Rigidbody
+    {
+        get
+        {
+            if (m_rigidBody == null)
+                m_rigidBody = GetComponent<Rigidbody>();
+
+            return m_rigidBody;
+        }
+    }
+
     protected readonly string m_dissolveAmount = "Vector1_8FBDE061";
     protected readonly string m_hologramToggle = "Boolean_4E61E6A7";
 
@@ -46,6 +58,14 @@ public class GameBase : MonoBehaviour
     }
 
     public virtual void SwitchToNight()
+    {
+    }
+
+    public virtual void SetPlayerNearEffectOn()
+    {
+    }
+
+    public virtual void SetPlayerNearEffectOff()
     {
     }
 }
