@@ -678,9 +678,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100d5e0960ae0fa4e9cc85cc07a80c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: StaticScene
-  m_hologramBaseMaterial: {fileID: 0}
-  m_dissolveBaseMaterial: {fileID: 0}
+  m_id: 0
+  m_functionality: 0
+  m_isPickable: 0
+  m_materialPrefab: {fileID: 0}
   m_scaleTransitionSpeed: 1
   m_dayScale: {x: 1, y: 1, z: 1}
   m_nightScale: {x: 2, y: 2, z: 2}
@@ -1095,21 +1096,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8241378314180021769, guid: 266b26d99569e3e4e8d8f350005f1454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.0000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8241378314180021769, guid: 266b26d99569e3e4e8d8f350005f1454,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
-    - target: {fileID: 606322609787647541, guid: 266b26d99569e3e4e8d8f350005f1454,
-        type: 3}
-      propertyPath: m_transitionSpeed
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 606322609787647541, guid: 266b26d99569e3e4e8d8f350005f1454,
         type: 3}
       propertyPath: m_nightScale.x
@@ -1124,6 +1110,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_nightScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241378314180021769, guid: 266b26d99569e3e4e8d8f350005f1454,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241378314180021769, guid: 266b26d99569e3e4e8d8f350005f1454,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 266b26d99569e3e4e8d8f350005f1454, type: 3}
@@ -1844,9 +1840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100d5e0960ae0fa4e9cc85cc07a80c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 
-  m_hologramBaseMaterial: {fileID: 0}
-  m_dissolveBaseMaterial: {fileID: 0}
+  m_id: 0
+  m_functionality: 0
+  m_isPickable: 0
+  m_materialPrefab: {fileID: 0}
   m_scaleTransitionSpeed: 1
   m_dayScale: {x: 1, y: 1, z: 1}
   m_nightScale: {x: 2, y: 2, z: 2}

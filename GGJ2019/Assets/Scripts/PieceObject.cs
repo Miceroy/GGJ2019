@@ -30,12 +30,6 @@ public class PieceObject : GameBase
 
     private bool m_inPlaygroundArea = false;
 
-    // Runtime instantiated materials.
-    private Material m_hologram = null;
-    private Material m_dissolveDay = null;
-    private Material m_dissolveNightIn = null;
-    private Material m_dissolveNightOut = null;
-
     private bool m_inTransition = false;
     private bool m_firsObjectTransitioned = false;
     private float m_transitionTimer = 0f;
@@ -49,19 +43,20 @@ public class PieceObject : GameBase
 
     private void Start()
     {
-        m_hologram = new Material(m_hologramBaseMaterial);
-        m_dissolveDay = new Material(m_dissolveBaseMaterial);
-        m_dissolveNightIn = new Material(m_dissolveBaseMaterial);
-        m_dissolveNightOut = new Material(m_dissolveBaseMaterial);
-
-        DayObject.material = m_dissolveDay;
-        NightObjectIn.material = m_dissolveNightIn;
-        NightObjectOut.material = m_dissolveNightOut;
+        DayObject.material = new Material(m_materialPrefab);
+        NightObjectIn.material = new Material(m_materialPrefab);
+        NightObjectOut.material = new Material(m_materialPrefab);
 
         m_currentMesh = DayObject;
         DayObject.material.SetFloat(m_dissolveAmount, 0f);
+        DayObject.material.SetInt(m_hologramToggle, 0);
+
         NightObjectIn.material.SetFloat(m_dissolveAmount, 1f);
+        NightObjectIn.material.SetInt(m_hologramToggle, 0);
+
         NightObjectOut.material.SetFloat(m_dissolveAmount, 1f);
+        NightObjectOut.material.SetInt(m_hologramToggle, 0);
+
 
         if (goToShowOnPlayerTrigger)
         {
@@ -83,9 +78,14 @@ public class PieceObject : GameBase
             }
         }
 
-        if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
+        PlayerCharacterController _player = other.gameObject.GetComponent<PlayerCharacterController>();
+        if (_player != null && goToShowOnPlayerTrigger != null && m_isPickable)
         {
             goToShowOnPlayerTrigger.SetActive(true);
+
+            DayObject.material.SetInt(m_hologramToggle, 1);
+            NightObjectIn.material.SetInt(m_hologramToggle, 1);
+            NightObjectOut.material.SetInt(m_hologramToggle, 1);
         }
     }
 
@@ -103,9 +103,14 @@ public class PieceObject : GameBase
             }
         }
 
-        if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
+        PlayerCharacterController _player = other.gameObject.GetComponent<PlayerCharacterController>();
+        if (_player != null && goToShowOnPlayerTrigger != null && m_isPickable)
         {
             goToShowOnPlayerTrigger.SetActive(false);
+
+            DayObject.material.SetInt(m_hologramToggle, 0);
+            NightObjectIn.material.SetInt(m_hologramToggle, 0);
+            NightObjectOut.material.SetInt(m_hologramToggle, 0);
         }
     }
 
@@ -153,7 +158,7 @@ public class PieceObject : GameBase
             }
         }
 
-        if(GetComponent<Rigidbody>().useGravity == false && goToShowOnPlayerTrigger.active)
+        if(GetComponent<Rigidbody>().useGravity == false && goToShowOnPlayerTrigger.activeSelf)
         {
             goToShowOnPlayerTrigger.SetActive(false);
         }
@@ -198,73 +203,4 @@ public class PieceObject : GameBase
         m_firsObjectTransitioned = false;
         m_inTransition = true;
     }
-
-    //bool isInArea;
-    //bool isPrevDay;
-
-    // Use this for initialization
-    //void Start ()
-    //{
-    //    checkSwitchMesh();
-    //}
-
-    // Update is called once per frame
-    //void Update () {
-    //    bool isNowDay = gameController().isDay();
-    //    if (isPrevDay != isNowDay)
-    //    {
-    //        checkSwitchMesh();
-    //    }
-    //    isPrevDay = isNowDay;
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
-    //    {
-    //        goToShowOnPlayerTrigger.SetActive(true);
-    //        Debug.Log("Piece enter to area");
-    //        isInArea = true;
-    //        checkSwitchMesh();
-    //    }
-    //}
-    //
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (goToShowOnPlayerTrigger && other.gameObject.tag == "Player")
-    //    {
-    //        goToShowOnPlayerTrigger.active = true;
-            //        Debug.Log("Piece enter to area");
-            //        isInArea = false;
-            //        checkSwitchMesh();
-    //    }
-    //}
-    //
-    //private void checkSwitchMesh()
-    //{
-    //    if( gameController().isDay() )
-    //    {
-    //        Debug.Log("Switch day mesh");
-    //        dayMesh.SetActive(true);
-    //        inAreaMesh.SetActive(false);
-    //        outAreaMesh.SetActive(false);
-    //    }
-    //    else
-    //    {
-    //        if(isInArea)
-    //        {
-    //            Debug.Log("Switch nught in area mesh");
-    //            dayMesh.SetActive(false);
-    //            inAreaMesh.SetActive(true);
-    //            outAreaMesh.SetActive(false);
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("Switch nught out area mesh");
-    //            dayMesh.SetActive(false);
-    //            inAreaMesh.SetActive(false);
-    //            outAreaMesh.SetActive(true);
-    //        }
-    //    }
-    //}
 }

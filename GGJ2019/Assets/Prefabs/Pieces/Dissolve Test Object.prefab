@@ -49,16 +49,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6b04b2fc9ccde4082159c9851d4b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: DissolveTest
-  m_hologramBaseMaterial: {fileID: 2100000, guid: b1371ed862c5110449ae1a597568de5f,
-    type: 2}
-  m_dissolveBaseMaterial: {fileID: 2100000, guid: beb718f57a913fb41b619bdb1fcccd48,
-    type: 2}
+  m_id: 999
+  m_functionality: 0
+  m_isPickable: 1
+  m_materialPrefab: {fileID: 2100000, guid: 940259ae6f36e5f4b8d3e8caadd6f520, type: 2}
   goToShowOnPlayerTrigger: {fileID: 5983077375601055123}
   DayObject: {fileID: 6025895331294701942}
   NightObjectIn: {fileID: 6543806152041000361}
   NightObjectOut: {fileID: 1351977670716019962}
-  m_transitionSpeed: 1
+  m_transitionSpeed: 0.5
   m_scaleTransitionSpeed: 1
   m_dayScale: {x: 1, y: 1, z: 1}
   m_nightScale: {x: 2, y: 2, z: 2}
