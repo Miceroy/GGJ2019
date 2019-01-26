@@ -152,6 +152,11 @@ public class PieceObject : GameBase
                 m_transitionScale = false;
             }
         }
+
+        if(GetComponent<Rigidbody>().useGravity == false && goToShowOnPlayerTrigger.active)
+        {
+            goToShowOnPlayerTrigger.SetActive(false);
+        }
     }
 
     public override void SwitchToDay()
