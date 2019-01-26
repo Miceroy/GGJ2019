@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6b04b2fc9ccde4082159c9851d4b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_id: 
-  m_enableOnStart: 0
+  m_id: DissolveTest
   m_hologramBaseMaterial: {fileID: 2100000, guid: b1371ed862c5110449ae1a597568de5f,
     type: 2}
   m_dissolveBaseMaterial: {fileID: 2100000, guid: beb718f57a913fb41b619bdb1fcccd48,
@@ -58,6 +57,9 @@ MonoBehaviour:
   NightObjectIn: {fileID: 6543806152041000361}
   NightObjectOut: {fileID: 1351977670716019962}
   m_transitionSpeed: 1
+  m_scaleTransitionSpeed: 1
+  m_dayScale: {x: 1, y: 1, z: 1}
+  m_nightScale: {x: 2, y: 2, z: 2}
 --- !u!135 &7339915802517440543
 SphereCollider:
   m_ObjectHideFlags: 0
