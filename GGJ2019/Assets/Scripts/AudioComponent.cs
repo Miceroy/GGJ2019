@@ -10,6 +10,8 @@ public class AudioComponent : MonoBehaviour
 
 
     [SerializeField]
-    private AudioClip m_audioClip = null;
-    public AudioClip AudioClip { get { return m_audioClip; } }
+    private AudioSource m_audioSource = null;
+    public AudioSource AudioSource { get { return m_audioSource; } }
+
+    public bool FollowingTransform { get; set; }
 }
