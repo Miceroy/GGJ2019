@@ -11,9 +11,8 @@ public class PlayerCharacterController : GameBase
     Transform collidingOldParent;
     //float oldY;
 
-    bool picked;
-
-    private GameBase m_baseGameObject = null;
+    private GameBase m_pickedBaseObject = null;
+    private GameBase m_collidedBaseObject = null;
 
     //// Start is called before the first frame update
     //void Start()
@@ -24,53 +23,40 @@ public class PlayerCharacterController : GameBase
     // Update is called once per frame
     protected override void Update()
     {
-        if (m_baseGameObject != null && Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire1"))
         {
-            if (picked)
+            if (m_pickedBaseObject != null)
             {
-                // Release
-                Debug.Log("Player release");
-                picked = false;
-                m_baseGameObject.transform.SetParent(collidingOldParent);
-                m_baseGameObject.Rigidbody.useGravity = true;
-                m_baseGameObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-                /*collidingItem.transform.position.Set(
-                    collidingItem.transform.position.x, 
-                    oldY, 
-                    collidingItem.transform.position.z);*/
+                m_pickedBaseObject.transform.SetParent(collidingOldParent);
+                m_pickedBaseObject.Rigidbody.useGravity = true;
+                m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                m_pickedBaseObject = null;
             }
-            else
+            else if (m_collidedBaseObject != null)
             {
-                if (!m_baseGameObject.IsPickable)
-                    return;
+                collidingOldParent = m_collidedBaseObject.transform.parent;
 
-                // Grab
-                Debug.Log("Player grab");
+                m_pickedBaseObject = m_collidedBaseObject;
 
-                picked = true;
-                collidingOldParent = m_baseGameObject.transform.parent;
-                m_baseGameObject.transform.SetParent(objectPickPoint.transform);
-                m_baseGameObject.Rigidbody.useGravity = false;
-                m_baseGameObject.Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-                //oldY = objectPickPoint.transform.position.y;
-                m_baseGameObject.transform.localPosition = new Vector3();
-                //collidingItem.transform.Translate(
-                //    0,
-                //    objectPickPoint.transform.localPosition.y,
-                //    0);
+                m_pickedBaseObject.transform.SetParent(objectPickPoint.transform);
+                m_pickedBaseObject.Rigidbody.useGravity = false;
+                m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+                m_pickedBaseObject.transform.localPosition = new Vector3();
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (picked)
+        if (m_pickedBaseObject != null)
             return;
 
         GameBase _baseObject = other.gameObject.GetComponent<GameBase>();
         if (_baseObject != null)
         {
-            m_baseGameObject = _baseObject;
+            if (_baseObject.IsPickable)
+                m_collidedBaseObject = _baseObject;
+
             _baseObject.SetPlayerNearEffectOn();
         }
     }
@@ -78,10 +64,31 @@ public class PlayerCharacterController : GameBase
     private void OnTriggerExit(Collider other)
     {
         GameBase _baseObject = other.gameObject.GetComponent<GameBase>();
-        if (!picked && _baseObject != null && _baseObject == m_baseGameObject)
+        if (_baseObject != null)
         {
-            m_baseGameObject.SetPlayerNearEffectOff();
-            m_baseGameObject = null;
+            if (_baseObject == m_collidedBaseObject)
+                m_collidedBaseObject = null;
+
+            _baseObject.SetPlayerNearEffectOff();
         }
     }
+
+    //// Debugging
+    //bool _isSoundPlaying = false;
+    //public override void SwitchToNight()
+    //{
+    //    if (_isSoundPlaying)
+    //        return;
+    //
+    //    AudioManager.PlaySound(AudioIDEnum.Music_SimpleBackground, true);
+    //    _isSoundPlaying = true;
+    //}
+    //
+    //public override void SwitchToDay()
+    //{
+    //    if (!_isSoundPlaying)
+    //        return;
+    //
+    //    AudioManager.PauseSound(AudioIDEnum.Music_SimpleBackground);
+    //}
 }
