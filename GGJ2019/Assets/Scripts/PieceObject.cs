@@ -55,6 +55,11 @@ public class PieceObject : GameBase
         {
             // In area
             m_inPlaygroundArea = true;
+
+            if (!GameController.IsDay)
+            {
+                transitionToNightIn();
+            }
         }
     }
 
@@ -65,6 +70,11 @@ public class PieceObject : GameBase
         {
             // Out of area
             m_inPlaygroundArea = false;
+
+            if (!GameController.IsDay)
+            {
+                transitionToNightOut();
+            }
         }
     }
 
@@ -106,6 +116,22 @@ public class PieceObject : GameBase
     public override void SwitchToNight()
     {
         m_targetMesh = m_inPlaygroundArea ? NightObjectIn : NightObjectOut;
+        m_transitionTimer = 0f;
+        m_firsObjectTransitioned = false;
+        m_inTransition = true;
+    }
+
+    private void transitionToNightIn()
+    {
+        m_targetMesh = NightObjectIn;
+        m_transitionTimer = 0f;
+        m_firsObjectTransitioned = false;
+        m_inTransition = true;
+    }
+
+    private void transitionToNightOut()
+    {
+        m_targetMesh = NightObjectOut;
         m_transitionTimer = 0f;
         m_firsObjectTransitioned = false;
         m_inTransition = true;
