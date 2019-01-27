@@ -7,6 +7,8 @@ public class MultipleTargetCamera : MonoBehaviour
     GameObject[] players;
     Vector3[] avgBuffer;
     int curIndex;
+	public int taikaluku1 = 6;
+	public int taikaluku2 = -7;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,7 @@ public class MultipleTargetCamera : MonoBehaviour
         Vector3 center = getCenterPoint();
         transform.LookAt(center);
         center.x = 0;
-        center += new Vector3(0, 6, -7);
+        center += new Vector3(0, taikaluku1, taikaluku2);
         avgBuffer[curIndex] = center;
         curIndex = (curIndex + 1) % avgBuffer.Length;
 
