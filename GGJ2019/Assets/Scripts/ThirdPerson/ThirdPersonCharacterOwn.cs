@@ -54,11 +54,11 @@ public class ThirdPersonCharacterOwn : MonoBehaviour
         if (move.magnitude > 0.0001f) move.Normalize();
         move = transform.InverseTransformDirection(move);
         // CheckGroundStatus();
-        m_Animator.applyRootMotion = true;
+        //m_Animator.applyRootMotion = false;
         move = Vector3.ProjectOnPlane(move, new Vector3(0,1,0)/*m_GroundNormal*/);
         m_TurnAmount = Mathf.Atan2(move.x, move.z);
         m_ForwardAmount = move.z;
-        Debug.LogError("FWD(" + m_ForwardAmount + ")");
+        //Debug.LogError("FWD(" + m_ForwardAmount + ")");
         ApplyExtraTurnRotation();
 
         // control and velocity handling is different when grounded and airborne:

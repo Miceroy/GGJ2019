@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2a0b53a04658f7e49a0cda1b3dfc1576
+guid: edc72110d99f0b34ba62b6094ee7a42d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -55,7 +55,7 @@ ModelImporter:
     400046: mixamorig:Spine
     400048: mixamorig:Spine1
     400050: mixamorig:Spine2
-    7400000: Walking
+    7400000: Carrying
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -86,10 +86,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Carrying
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 172
+      lastFrame: 600
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -100,10 +100,10 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
