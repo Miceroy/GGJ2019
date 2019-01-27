@@ -36,6 +36,9 @@ public class PlayerCharacterController : GameBase
                 animator.SetBool("IsCarrying", false);
                 charCtrl.m_antinSpeed += drop;
 
+                //m_pickedBaseObject.GetComponent<>().play;
+
+
             }
             else if (m_collidedBaseObject != null)
             {
@@ -49,6 +52,7 @@ public class PlayerCharacterController : GameBase
                 m_pickedBaseObject.transform.localPosition = new Vector3();
                 animator.SetBool("IsCarrying", true);
                 charCtrl.m_antinSpeed -= drop;
+
             }
         }
     }

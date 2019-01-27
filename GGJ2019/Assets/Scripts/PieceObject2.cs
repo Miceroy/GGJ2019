@@ -27,7 +27,7 @@ public class PieceObject2 : GameBase
     [SerializeField]
     private GameObject nightObjectOut;
 
-    private int m_collideLevel;
+    public int m_collideLevel;
 
     
     private void Start()
