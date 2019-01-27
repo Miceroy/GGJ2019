@@ -18,7 +18,14 @@ public class AnyKeyToDisable : MonoBehaviour
         if (Input.anyKey)
         {
             source.PlayOneShot(sound);
-            gameObject.SetActive(false);
+            StartCoroutine(disableLater());
         }
+    }
+
+    IEnumerator disableLater()
+    {
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
+        //return null;
     }
 }
