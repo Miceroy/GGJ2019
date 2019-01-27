@@ -14,8 +14,8 @@ public class PlayerCharacterController : GameBase
     Transform collidingOldParent;
     //float oldY;
 
-    private GameBase m_pickedBaseObject = null;
-    private GameBase m_collidedBaseObject = null;
+    private PieceObject m_pickedBaseObject = null;
+    private PieceObject m_collidedBaseObject = null;
 
     //// Start is called before the first frame update
     //void Start()
@@ -32,14 +32,14 @@ public class PlayerCharacterController : GameBase
             {
                 m_pickedBaseObject.transform.SetParent(collidingOldParent);
                 m_pickedBaseObject.Rigidbody.useGravity = true;
-                //if (m_pickedBaseObject.CanCollide == true)
-				//{
+                if (m_pickedBaseObject.CanCollide == true)
+				{
 					m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation; // | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
-				//}
-				//else
-				//{
-					//m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
-				//}
+				}
+				else
+				{
+				    m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
+				}
                 m_pickedBaseObject = null;
                 // TODO
                 animator.SetBool("IsCarrying", false);
@@ -68,7 +68,7 @@ public class PlayerCharacterController : GameBase
         if (m_pickedBaseObject != null)
             return;
 
-        GameBase _baseObject = other.gameObject.GetComponent<GameBase>();
+        PieceObject _baseObject = other.gameObject.GetComponent<PieceObject>();
         if (_baseObject != null)
         {
             if (_baseObject.IsPickable)
