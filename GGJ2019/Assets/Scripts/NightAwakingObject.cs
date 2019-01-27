@@ -19,6 +19,7 @@ public class NightAwakingObject : GameBase
 
     public override void SwitchToNight()
     {
+		Debug.Log("Switch to night");
         gameObjectToActivate.SetActive(true);
     }
 }

@@ -14,7 +14,7 @@ public class AlignToCamera : MonoBehaviour
     {
         //transform.
         transform.LookAt(
-            transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.up);
+            transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
 
     }
 }

@@ -54,15 +54,15 @@ public class PieceObject : GameBase
 
     private void Start()
     {
-        DayObject.material = new Material(m_materialPrefab);
-        NightObjectIn.material = new Material(m_materialPrefab);
-        NightObjectOut.material = new Material(m_materialPrefab);
+        //DayObject.material = new Material(m_materialPrefab);
+        //NightObjectIn.material = new Material(m_materialPrefab);
+        //NightObjectOut.material = new Material(m_materialPrefab);
 
         // Create runtime copy of default materials, so material shader edits doesn't affect every piece using same material.
         // Use these lines instead when objects are read and do not require "much" debugging.
-        //DayObject.material = new Material(DayObject.material);
-        //NightObjectIn.material = new Material(NightObjectIn.material);
-        //NightObjectOut.material = new Material(NightObjectOut.material);
+        DayObject.material = new Material(DayObject.material);
+        NightObjectIn.material = new Material(NightObjectIn.material);
+        NightObjectOut.material = new Material(NightObjectOut.material);
 
         m_currentMesh = DayObject;
         DayObject.material.SetFloat(m_dissolveAmount, 0f);

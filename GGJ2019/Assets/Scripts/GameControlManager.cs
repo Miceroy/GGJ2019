@@ -26,6 +26,8 @@ public class GameControlManager
         m_dayNightObjects = new List<GameBase>();
         //m_dayNightObjectsByID = new Dictionary<GameBaseIDEnum, GameBase>();
         m_isDay = true;
+		ToggleDayNightCycle();
+		ToggleDayNightCycle();
     }
 
     public void AddGameBaseObject(GameBase gameBase)
@@ -60,14 +62,16 @@ public class GameControlManager
 
     public void ToggleDayNightCycle()
     {
-        m_isDay = !m_isDay;
+		m_isDay = !m_isDay;
 
         for (int i = 0; i < m_dayNightObjects.Count; i++)
         {
             if (m_isDay)
                 m_dayNightObjects[i].SwitchToDay();
             else
+			{
                 m_dayNightObjects[i].SwitchToNight();
+			}
         }
     }
 }

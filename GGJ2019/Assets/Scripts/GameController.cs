@@ -33,9 +33,10 @@ public class GameController : MonoBehaviour
 
     public static void ToggleDayNightCycle()
     {
-        if (m_controlManager == null)
+        if (m_controlManager == null){
             m_controlManager = new GameControlManager();
-
+		}
+		
         m_controlManager.ToggleDayNightCycle();
     }
 
