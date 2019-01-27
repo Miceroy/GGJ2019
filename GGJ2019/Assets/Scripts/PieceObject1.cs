@@ -151,6 +151,7 @@ public class PieceObject1 : GameBase
         NightObjectOut.GetComponent<MeshRenderer>().material.SetInt(m_hologramToggle, 0);
     }
 
+
     protected override void Update()
     {
         if (m_inTransition)
