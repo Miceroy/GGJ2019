@@ -14,7 +14,9 @@ public class PieceObject2 : GameBase
     }
 	public bool CanCollide = false;
     private bool prevDay;
-
+	public AudioClip dropsound;
+	public AudioClip picksound;
+	
     [SerializeField]
     private GameObject goToShowOnPlayerTrigger;
 
@@ -139,4 +141,14 @@ public class PieceObject2 : GameBase
             goToShowOnPlayerTrigger.SetActive(false);
         }
     }
+	public void playpick()
+	{
+		GetComponent<AudioSource>().PlayOneShot(picksound);
+		
+	}
+	public void playdrop()
+	{
+		GetComponent<AudioSource>().PlayOneShot(dropsound);
+		
+	}
 }

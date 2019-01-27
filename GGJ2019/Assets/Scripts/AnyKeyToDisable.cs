@@ -6,6 +6,7 @@ public class AnyKeyToDisable : MonoBehaviour
 {
     public AudioClip sound;
     private AudioSource source;
+	bool isPlaying =false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +16,9 @@ public class AnyKeyToDisable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey)
+        if (!isPlaying && Input.anyKey)
         {
+			isPlaying=true;
             source.PlayOneShot(sound);
             StartCoroutine(disableLater());
         }

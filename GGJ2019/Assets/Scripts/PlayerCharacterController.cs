@@ -27,17 +27,18 @@ public class PlayerCharacterController : GameBase
                 if (m_pickedBaseObject.CanCollide == true)
 				{
 					m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+					
 				}
 				else
 				{
 				    m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
 				}
-                m_pickedBaseObject = null;
+                
                 animator.SetBool("IsCarrying", false);
                 charCtrl.m_antinSpeed += drop;
-
-                //m_pickedBaseObject.GetComponent<>().play;
-
+				Debug.Log("Meni tänne asti");
+                m_pickedBaseObject.playdrop();
+				m_pickedBaseObject = null;
 
             }
             else if (m_collidedBaseObject != null)
@@ -52,7 +53,7 @@ public class PlayerCharacterController : GameBase
                 m_pickedBaseObject.transform.localPosition = new Vector3();
                 animator.SetBool("IsCarrying", true);
                 charCtrl.m_antinSpeed -= drop;
-
+				m_pickedBaseObject.playpick();
             }
         }
     }
