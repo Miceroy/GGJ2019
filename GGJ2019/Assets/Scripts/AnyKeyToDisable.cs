@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AnyKeyToDisable : MonoBehaviour
 {
+    public AudioClip sound;
+    private AudioSource source;
     // Start is called before the first frame update
     void Start()
     {
-
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -15,6 +17,7 @@ public class AnyKeyToDisable : MonoBehaviour
     {
         if (Input.anyKey)
         {
+            source.PlayOneShot(sound);
             gameObject.SetActive(false);
         }
     }
