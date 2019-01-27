@@ -55,6 +55,10 @@ public class PieceObject2 : GameBase
                 nightObjectIn.SetActive(false);
                 nightObjectOut.SetActive(true);
             }
+            else
+            {
+                dayObject.SetActive(true);
+            }
         }
         if (GameController.IsDay && !prevDay)
         {
@@ -86,6 +90,13 @@ public class PieceObject2 : GameBase
                 nightObjectOut.SetActive(true);
                 m_collideLevel = 1;
             }
+            /*else
+            {
+                dayObject.SetActive(true);
+                nightObjectIn.SetActive(false);
+                nightObjectOut.SetActive(false);
+                m_collideLevel = 0;
+            }*/
 
             Debug.Log("Collide level: " + m_collideLevel.ToString());
         }
