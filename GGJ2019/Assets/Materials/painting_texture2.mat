@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: metal_normal
+  m_Name: painting_texture2
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   m_LightmapFlags: 4
@@ -25,11 +25,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1.68, y: 2.29}
+        m_Scale: {x: 3, y: 4}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 5f09799cf6078f14783d2820ca31efbc, type: 3}
-        m_Scale: {x: 1.68, y: 2.29}
+        m_Texture: {fileID: 2800000, guid: 4a4ffabd7df07d34faa2c60e5161f5e8, type: 3}
+        m_Scale: {x: 3, y: 4}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -51,9 +51,9 @@ Material:
     - _Cutoff: 0.5
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.277
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.018
+    - _Metallic: 0
     - _OcclusionStrength: 1
     - _ReceiveShadows: 1
     - _SmoothnessTextureChannel: 1
