@@ -9,9 +9,14 @@ public class GameController : MonoBehaviour
     // Debug purposes
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetButtonDown("Fire2"))
         {
             Button_ToggleDayNightCycle();
+        }
+
+        if (Input.GetButtonDown("Fire3"))
+        {
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
