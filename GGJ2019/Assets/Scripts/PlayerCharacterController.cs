@@ -8,40 +8,31 @@ public class PlayerCharacterController : GameBase
     public ThirdPersonCharacterOwn charCtrl;
     public Animator animator;
     public GameObject objectPickPoint;
-
-    //GameObject collidingItem;
-
+    
     Transform collidingOldParent;
-    //float oldY;
 
-    private PieceObject m_pickedBaseObject = null;
-    private PieceObject m_collidedBaseObject = null;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    m_baseGameObject = null;
-    //}
+    private PieceObject2 m_pickedBaseObject = null;
+    private PieceObject2 m_collidedBaseObject = null;
 
     // Update is called once per frame
     protected override void Update()
     {
         if (Input.GetButtonUp("Fire1"))
         {
+            Debug.Log("Fire1");
             if (m_pickedBaseObject != null)
             {
                 m_pickedBaseObject.transform.SetParent(collidingOldParent);
                 m_pickedBaseObject.Rigidbody.useGravity = true;
                 if (m_pickedBaseObject.CanCollide == true)
 				{
-					m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation; // | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
+					m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 				}
 				else
 				{
 				    m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
 				}
                 m_pickedBaseObject = null;
-                // TODO
                 animator.SetBool("IsCarrying", false);
                 charCtrl.m_antinSpeed += drop;
 
@@ -56,7 +47,6 @@ public class PlayerCharacterController : GameBase
                 m_pickedBaseObject.Rigidbody.useGravity = false;
                 m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 m_pickedBaseObject.transform.localPosition = new Vector3();
-                // TODO
                 animator.SetBool("IsCarrying", true);
                 charCtrl.m_antinSpeed -= drop;
             }
@@ -68,44 +58,27 @@ public class PlayerCharacterController : GameBase
         if (m_pickedBaseObject != null)
             return;
 
-        PieceObject _baseObject = other.gameObject.GetComponent<PieceObject>();
+        PieceObject2 _baseObject = other.gameObject.GetComponent<PieceObject2>();
         if (_baseObject != null)
         {
+            Debug.Log("Vittu Enter!");
             if (_baseObject.IsPickable)
+            {
                 m_collidedBaseObject = _baseObject;
-
-            _baseObject.SetPlayerNearEffectOn();
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameBase _baseObject = other.gameObject.GetComponent<GameBase>();
+        PieceObject2 _baseObject = other.gameObject.GetComponent<PieceObject2>();
         if (_baseObject != null)
         {
+            Debug.Log("Vittu Exit!");
             if (_baseObject == m_collidedBaseObject)
+            {
                 m_collidedBaseObject = null;
-
-            _baseObject.SetPlayerNearEffectOff();
+            }
         }
     }
-
-    //// Debugging
-    //bool _isSoundPlaying = false;
-    //public override void SwitchToNight()
-    //{
-    //    if (_isSoundPlaying)
-    //        return;
-    //
-    //    AudioManager.PlaySound(AudioIDEnum.Music_SimpleBackground, true);
-    //    _isSoundPlaying = true;
-    //}
-    //
-    //public override void SwitchToDay()
-    //{
-    //    if (!_isSoundPlaying)
-    //        return;
-    //
-    //    AudioManager.PauseSound(AudioIDEnum.Music_SimpleBackground);
-    //}
 }

@@ -281,6 +281,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: dayMesh
+      value: 
+      objectReference: {fileID: 1463974388330790086}
+    - target: {fileID: 0}
+      propertyPath: inAreaMesh
+      value: 
+      objectReference: {fileID: 5770009822142041218}
+    - target: {fileID: 0}
+      propertyPath: outAreaMesh
+      value: 
+      objectReference: {fileID: 3009810427344003729}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1825573970776564, guid: a832a33d17cf4f241be17c84b25792ea, type: 3}
       propertyPath: m_Name
       value: TestObject Variant
@@ -329,23 +345,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114754121926845052, guid: a832a33d17cf4f241be17c84b25792ea,
-        type: 3}
-      propertyPath: dayMesh
-      value: 
-      objectReference: {fileID: 1463974388330790086}
-    - target: {fileID: 114754121926845052, guid: a832a33d17cf4f241be17c84b25792ea,
-        type: 3}
-      propertyPath: inAreaMesh
-      value: 
-      objectReference: {fileID: 5770009822142041218}
-    - target: {fileID: 114754121926845052, guid: a832a33d17cf4f241be17c84b25792ea,
-        type: 3}
-      propertyPath: outAreaMesh
-      value: 
-      objectReference: {fileID: 3009810427344003729}
-    m_RemovedComponents:
-    - {fileID: 3038902001803561085, guid: a832a33d17cf4f241be17c84b25792ea, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a832a33d17cf4f241be17c84b25792ea, type: 3}
 --- !u!1 &1463974388330790086 stripped
 GameObject:
