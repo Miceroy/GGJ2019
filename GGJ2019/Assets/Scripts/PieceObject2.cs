@@ -83,7 +83,7 @@ public class PieceObject2 : GameBase
                 nightObjectOut.SetActive(false);
                 m_collideLevel = 2;
             }
-            else if (m_collideLevel < 2 && _area.ID == GameBaseIDEnum.OuterArea)
+            else if ( /*m_collideLevel < 2 && */_area.ID == GameBaseIDEnum.OuterArea)
             {
                 dayObject.SetActive(false);
                 nightObjectIn.SetActive(false);
