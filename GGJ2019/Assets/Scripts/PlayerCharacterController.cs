@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerCharacterController : GameBase
 {
+    public float drop = 4.0f;
+    public ThirdPersonCharacterOwn charCtrl;
+    public Animator animator;
     public GameObject objectPickPoint;
 
     //GameObject collidingItem;
@@ -31,6 +34,10 @@ public class PlayerCharacterController : GameBase
                 m_pickedBaseObject.Rigidbody.useGravity = true;
                 m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
                 m_pickedBaseObject = null;
+                // TODO
+                animator.SetBool("IsCarrying", false);
+                charCtrl.m_antinSpeed += drop;
+
             }
             else if (m_collidedBaseObject != null)
             {
@@ -42,6 +49,9 @@ public class PlayerCharacterController : GameBase
                 m_pickedBaseObject.Rigidbody.useGravity = false;
                 m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
                 m_pickedBaseObject.transform.localPosition = new Vector3();
+                // TODO
+                animator.SetBool("IsCarrying", true);
+                charCtrl.m_antinSpeed -= drop;
             }
         }
     }
