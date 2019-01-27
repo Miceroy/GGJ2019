@@ -124,6 +124,12 @@ public class ThirdPersonCharacterOwn : MonoBehaviour
         m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
         m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
         transform.Translate(new Vector3(0,0, m_antinSpeed * m_ForwardAmount*Time.deltaTime));
+
+        if(GetComponent<Rigidbody>().velocity.y > 30)
+        {
+            Debug.Log("Falling!!!");
+            m_Animator.SetBool("Falling", true);
+        }
      //   m_Animator.SetBool("Crouch", m_Crouching);
       //  m_Animator.SetBool("OnGround", m_IsGrounded);
        /* if (!m_IsGrounded)
