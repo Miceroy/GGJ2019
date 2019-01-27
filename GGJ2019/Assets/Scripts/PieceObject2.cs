@@ -52,8 +52,8 @@ public class PieceObject2 : GameBase
             }
             else if(m_collideLevel == 1)
             {
-                nightObjectIn.SetActive(false);
-                nightObjectOut.SetActive(true);
+                nightObjectIn.SetActive(true);
+                nightObjectOut.SetActive(false);
             }
             else
             {
@@ -116,19 +116,19 @@ public class PieceObject2 : GameBase
             if (_area.ID == GameBaseIDEnum.InnerArea) // Left from inner area and transition to outer area
             {
                 //    transitionIntoNightTimeArea(ItemLocationEnum.InAreaOuter);
-                dayObject.SetActive(false);
+                dayObject.SetActive(true);
                 nightObjectIn.SetActive(false);
-                nightObjectOut.SetActive(true);
+                nightObjectOut.SetActive(false);
                 m_collideLevel = 1;
             }
-            else if (_area.ID == GameBaseIDEnum.OuterArea)
+            /*else if (_area.ID == GameBaseIDEnum.OuterArea)
             {
                 //    transitionIntoNightTimeArea(ItemLocationEnum.OutsideArea);
                 dayObject.SetActive(true);
                 nightObjectIn.SetActive(false);
                 nightObjectOut.SetActive(false);
                 m_collideLevel = 0;
-            }
+            }*/
 
             Debug.Log("Collide level: " + m_collideLevel.ToString());
         }
