@@ -4,6 +4,8 @@ public enum GameBaseIDEnum
 {
     None = 0, // Not in use / do not add into GameController.
     NightAwakingObject = 1,
+    InnerArea = 2,
+    OuterArea = 3,
 
 
     DEBUG_EnableHologramTablet = 998,

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PieceObject : GameBase
 {
+    private enum ItemLocationEnum
+    {
+        None = 0,
+
+       InAreaInner = 1,
+       InAreaOuter = 2,
+       OutsideArea = 3,
+    }
+
     [SerializeField]
     private GameObject goToShowOnPlayerTrigger;
 
@@ -28,7 +37,8 @@ public class PieceObject : GameBase
     [SerializeField]
     private Vector3 m_nightScale = new Vector3(2f, 2f, 2f);
 
-    private bool m_inPlaygroundArea = false;
+    //private bool m_inPlaygroundArea = false;
+    private ItemLocationEnum m_location = ItemLocationEnum.None;
 
     private bool m_inTransition = false;
     private bool m_firsObjectTransitioned = false;
@@ -68,6 +78,8 @@ public class PieceObject : GameBase
         {
             goToShowOnPlayerTrigger.SetActive(false);
         }
+
+        m_location = ItemLocationEnum.OutsideArea; // Determine area positon on spawning?
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,12 +87,16 @@ public class PieceObject : GameBase
         AreaObject _area = other.gameObject.GetComponent<AreaObject>();
         if (_area != null)
         {
-            // In area
-            m_inPlaygroundArea = true;
-
-            if (!GameController.IsDay)
+            if (_area.ID == GameBaseIDEnum.InnerArea)
             {
-                transitionToNightIn();
+                // In area
+                //m_inPlaygroundArea = true;
+                transitionIntoNightTimeArea(ItemLocationEnum.InAreaInner);
+            }
+            else if (_area.ID == GameBaseIDEnum.OuterArea)
+            {
+                // TODO
+                transitionIntoNightTimeArea(ItemLocationEnum.InAreaOuter);
             }
         }
     }
@@ -90,13 +106,29 @@ public class PieceObject : GameBase
         AreaObject _area = other.gameObject.GetComponent<AreaObject>();
         if (_area != null)
         {
-            // Out of area
-            m_inPlaygroundArea = false;
-
-            if (!GameController.IsDay)
+            if (_area.ID == GameBaseIDEnum.InnerArea) // Left from inner area and transition to outer area
             {
-                transitionToNightOut();
+                transitionIntoNightTimeArea(ItemLocationEnum.InAreaOuter);
             }
+            else if (_area.ID == GameBaseIDEnum.OuterArea)
+            {
+                transitionIntoNightTimeArea(ItemLocationEnum.OutsideArea);
+            }
+
+            //if (_area.ID == GameBaseIDEnum.InnerArea)
+            //{
+            //    // Out of area
+            //    m_inPlaygroundArea = false;
+            //
+            //    if (!GameController.IsDay)
+            //    {
+            //        transitionToNightOut();
+            //    }
+            //}
+            //else if(!m_inPlaygroundArea && _area.ID == GameBaseIDEnum.OuterArea)
+            //{
+            //    // TODO
+            //}
         }
     }
 
@@ -135,7 +167,11 @@ public class PieceObject : GameBase
                 if (!m_firsObjectTransitioned)
                 {
                     m_firsObjectTransitioned = true;
-                    m_currentMesh = m_targetMesh;
+                    if (m_targetMesh != null)
+                        m_currentMesh = m_targetMesh;
+                    else
+                        m_inTransition = false;
+
                     m_targetMesh = null;
                     m_transitionTimer = 0f;
                 }
@@ -182,7 +218,20 @@ public class PieceObject : GameBase
 
     public override void SwitchToNight()
     {
-        m_targetMesh = m_inPlaygroundArea ? NightObjectIn : NightObjectOut;
+        switch (m_location)
+        {
+            case ItemLocationEnum.InAreaInner:
+                m_targetMesh = NightObjectIn;
+                break;
+            case ItemLocationEnum.InAreaOuter:
+                m_targetMesh = NightObjectOut;
+                break;
+            case ItemLocationEnum.OutsideArea:
+                m_targetMesh = DayObject;
+                break;
+        }
+
+        //m_targetMesh = m_loc ? NightObjectIn : NightObjectOut;
         m_transitionTimer = 0f;
         m_firsObjectTransitioned = false;
         m_inTransition = true;
@@ -192,19 +241,49 @@ public class PieceObject : GameBase
         m_transitionScale = true;
     }
 
-    private void transitionToNightIn()
+    private void transitionIntoNightTimeArea(ItemLocationEnum locationToTransitionIn)
     {
-        m_targetMesh = NightObjectIn;
+        if (m_location == locationToTransitionIn)
+            return;
+
+        m_location = locationToTransitionIn;
+
+        if (GameController.IsDay)
+            return;
+
+       // Debug.LogError("Transition into [" + locationToTransitionIn + "]");
+
+        switch (m_location)
+        {
+            case ItemLocationEnum.InAreaInner:
+                m_targetMesh = NightObjectIn;
+                break;
+            case ItemLocationEnum.InAreaOuter:
+                m_targetMesh = NightObjectOut;
+                break;
+            case ItemLocationEnum.OutsideArea:
+                //m_targetMesh = DayObject;
+                break;
+        }
+
         m_transitionTimer = 0f;
         m_firsObjectTransitioned = false;
         m_inTransition = true;
     }
 
-    private void transitionToNightOut()
-    {
-        m_targetMesh = NightObjectOut;
-        m_transitionTimer = 0f;
-        m_firsObjectTransitioned = false;
-        m_inTransition = true;
-    }
+    //private void transitionToNightIn()
+    //{
+    //    m_targetMesh = NightObjectIn;
+    //    m_transitionTimer = 0f;
+    //    m_firsObjectTransitioned = false;
+    //    m_inTransition = true;
+    //}
+    //
+    //private void transitionToNightOut()
+    //{
+    //    m_targetMesh = NightObjectOut;
+    //    m_transitionTimer = 0f;
+    //    m_firsObjectTransitioned = false;
+    //    m_inTransition = true;
+    //}
 }
