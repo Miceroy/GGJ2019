@@ -32,7 +32,14 @@ public class PlayerCharacterController : GameBase
             {
                 m_pickedBaseObject.transform.SetParent(collidingOldParent);
                 m_pickedBaseObject.Rigidbody.useGravity = true;
-                m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+                //if (m_pickedBaseObject.CanCollide == true)
+				//{
+					m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation; // | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
+				//}
+				//else
+				//{
+					//m_pickedBaseObject.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ; 
+				//}
                 m_pickedBaseObject = null;
                 // TODO
                 animator.SetBool("IsCarrying", false);
