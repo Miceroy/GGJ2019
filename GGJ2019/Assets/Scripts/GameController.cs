@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     private static GameControlManager m_controlManager = null;
+    private bool m_night;
 
     // Debug purposes
     private void Update()
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            Button_ToggleDayNightCycle();
+            if (!m_night)
+            {
+                Button_ToggleDayNightCycle();
+                m_night = true;
+            }
         }
 
         if (Input.GetButtonDown("Fire3"))
         {
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
