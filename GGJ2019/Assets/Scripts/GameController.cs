@@ -24,7 +24,13 @@ public class GameController : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+			Application.Quit();
+        }
+
+	}
 
     public static void AddGameBaseObject(GameBase gameBase)
     {
