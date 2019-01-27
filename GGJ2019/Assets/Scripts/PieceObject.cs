@@ -12,6 +12,7 @@ public class PieceObject : GameBase
        InAreaOuter = 2,
        OutsideArea = 3,
     }
+	public bool CanCollide = false;
 
     [SerializeField]
     private GameObject goToShowOnPlayerTrigger;
