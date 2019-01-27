@@ -13,6 +13,7 @@ public class PieceObject2 : GameBase
        OutsideArea = 3,
     }
 	public bool CanCollide = false;
+    private bool prevDay;
 
     [SerializeField]
     private GameObject goToShowOnPlayerTrigger;
@@ -36,6 +37,34 @@ public class PieceObject2 : GameBase
         nightObjectOut.SetActive(false);
         goToShowOnPlayerTrigger.SetActive(false);
         m_collideLevel = 0;
+    }
+
+    private void Update()
+    {
+        if(!GameController.IsDay && prevDay)
+        {
+            // TODO: Day -> Night
+            dayObject.SetActive(false);
+            if (m_collideLevel == 2)
+            {
+                nightObjectIn.SetActive(true);
+                nightObjectOut.SetActive(false);
+            }
+            else if(m_collideLevel == 1)
+            {
+                nightObjectIn.SetActive(false);
+                nightObjectOut.SetActive(true);
+            }
+        }
+        if (GameController.IsDay && !prevDay)
+        {
+            // TODO: Night -> Day
+            dayObject.SetActive(true);
+            nightObjectIn.SetActive(false);
+            nightObjectOut.SetActive(false);
+        }
+
+        prevDay = GameController.IsDay;
     }
 
     private void OnTriggerEnter(Collider other)
